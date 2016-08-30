@@ -3,13 +3,13 @@
 #include<math.h>
 #define precision 0.00000000001
 
-int calc_k(double a, double b){ // Calcula a quantidade de iterações necessárias
+int calc_k(double a, double b){
   double k;
   k = (log(b - a) - log(precision)) / log(2);
   return (int)ceil(k);
 }
 
-double calc_ponto_medio(double a, double b){ //Calcula o ponto médio do intervalo
+double calc_ponto_medio(double a, double b){
   double x;
   x = (a + b) / 2;
   return x;
@@ -28,7 +28,7 @@ double calc_fa(double a){
 }
 
 int main(){
-  double a, b; // Intervalo observado no Passo 1
+  double a, b;
   printf("Digite o primeiro valor do intervalo: \n");
   scanf("%lf", &a);
   printf("Digite o segundo valor do intervalo: \n");
@@ -52,6 +52,6 @@ int main(){
     }
   }
 
-  printf("%.10lf \n", x);
+  printf("%.11lf \n", x);
   return 0;
 }
