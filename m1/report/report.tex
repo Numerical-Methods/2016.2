@@ -65,7 +65,7 @@
   \centering
   \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{logo.png}\\[2.0 cm]
+    \includegraphics[width=0.7\textwidth]{figuras/logo.png}\\[2.0 cm]
   \end{figure}
   \textsc{\LARGE Universidade de Brasília}\\[2.5 cm]	% University Name
   \textsc{\Large Relatório de atividade do módulo 1}\\[0.5 cm]				% Activity name
@@ -138,7 +138,7 @@ Então, de acordo com o teorema \ref{teo:teorema}, como o resultado de $f(a) * f
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=15cm]{kepler.png}\\
+  \includegraphics[width=15cm]{figuras/kepler.png}\\
   \caption{Plotagem da função no intervalo $[-10,10]$}\label{fig:grafico}
 \end{figure}
 
@@ -149,7 +149,7 @@ Nesta seção, encontra-se o fluxo de execução da solução da equação~\eqre
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=10cm]{fluxograma.png}\\
+  \includegraphics[width=10cm]{figuras/fluxograma.png}\\
   \caption{Fluxo de execução da solução}\label{fig:fluxo}
 \end{figure}
 
@@ -163,6 +163,31 @@ A solução elaborada neste relatório funciona da seguinte maneira. Tanto a fun
 \newpage
 \section{Resultados e discussões}
 
+Nesta seção discutiremos os resultados obtido após a execução do programa.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=15cm]{figuras/x.png}\\
+  \caption{Resultado da execução da solução}\label{fig:valx}
+\end{figure}
+
+A partir desta saída, definimos a próxima equação:
+
+\begin{eqnarray}\label{eq:final}
+  -0.2sin(x) + x - 0.5 = 0 \nonumber\\
+  x = 0.61546816950
+\end{eqnarray}
+
+O resultado encontrado a partir da solução proposta é condizente. Pois ao fazermos a substituição do valor encontrado na equação~\eqref{eq:final} na fórmula~\eqref{eq:inzero} conseguimos obter um valor muito próximo a zero. Como pode ser visto abaixo:
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=15cm]{figuras/printx.png}\\
+  \caption{Resultado da substituição}\label{fig:printx}
+\end{figure}
+
+Sendo assim, o objetivo proposto no início do relatório foi satisfatoriamente alcançado.
+
 \newpage
 \section{Ferramentas}
 Todas as ferramentas utilizadas neste relatório são ferramentas open source (software livre). Permitindo assim que qualquer um possa reproduzir e contestar as afirmações presentes neste documento.
@@ -175,6 +200,10 @@ Todas as ferramentas utilizadas neste relatório são ferramentas open source (s
   \item GCC (\url{https://gcc.gnu.org})
     \begin{itemize}
       \item Compilador de C utilizado para compilar a solução.
+    \end{itemize}
+  \item Python (\url{https://www.python.org})
+    \begin{itemize}
+      \item Linguagem de programação utilizada para conferir os valores da solução.
     \end{itemize}
   \item vim (\url{http://www.vim.org})
     \begin{itemize}
