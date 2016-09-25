@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include <locale.h>
-
-double M[20][20], X[10], multiplier;
+double M[10][10], X[10], multiplier;
 int n;
 
 void read_elements(){
@@ -9,8 +8,8 @@ void read_elements(){
   scanf("%d",&n);
   printf("Insira os elementos da matriz aumentada:\n");
   for(int i = 1; i <= n; i++){
+    printf("Elementos da %da linha\n", i);
     for(int j = 1; j <= (n + 1); j++){
-      printf("M[%d][%d]:", i,j);
       scanf("%lf",&M[i][j]);
     }
   }
@@ -30,7 +29,7 @@ void diagonalize_matrix(){
 }
 
 void show_results(){
-  printf("A solução para o sistemas de equações lineares é: \n");
+  printf("As correntes que satisfazem o sistema são: \n");
   for(int i = 1; i <= n; i++){
     X[i] = M[i][n+1] / M[i][i];
     printf("Corrente I%d = %.10lf\n",i,X[i]);
@@ -39,11 +38,9 @@ void show_results(){
 
 int main()
 {
-
   setlocale(LC_ALL,"");
   read_elements();
   diagonalize_matrix();
   show_results();
-
   return(0);
 }
