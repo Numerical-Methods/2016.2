@@ -27,7 +27,9 @@
   showspaces=false,
   showstringspaces=false,
   showtabs=false,
-  tabsize=2
+  tabsize=2,
+  extendedchars=true,
+  literate={á}{{\'a}}1 {ã}{{\~a}}1 {õ}{{\~o}}1 {é}{{\'e}}1 {ç}{{\c{c}}}1,
 }
 
 \lstset{style=mystyle}
@@ -41,6 +43,7 @@
 \usepackage{vmargin}
 \usepackage{hyperref}
 \setmarginsrb{3 cm}{2.5 cm}{3 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
+
 
 \title{Sistemas de Equações Lineares}								% Title
 \author{Wilton Rodrigues}								% Author
@@ -116,7 +119,7 @@ Sendo assim, para as seguintes malhas temos as seguintes equações:
   Para~BCDB: & I_5R_5+I_3R_3-I_4R_4=0 \nonumber\\
   Para~o~A: & I_6=I_1+I_2 \nonumber\\
   Para~o~B: & I_1=I_5+I_4 \nonumber\\
-  Para~o~C: & I_3=I_2+I_5 \nonumber
+  Para~o~C: & I_3=I_2+I_5
 \end{eqnarray}
 
 O objetivo do trabalho é solucionar o sistema de equações lineares acima para determinar as correntes
@@ -124,48 +127,81 @@ $I1, I2,...,I6$ através do método de Gauss-Jordan.
 
 \section{Metodologia}
 
-Neste primeiro passo, será feita uma análise da equação, baseando-se no gráfico da mesma e nos conceitos teóricos e teoremas do método escolhido. O sucesso ou falha do próximo passo está diretamente ligado aos resultados obtidos nesta fase de análise.
-Baseando-se no teorema:
-\newtheorem{ambiente}{Teorema}
-\begin{ambiente}[Função Contínua]\label{teo:teorema}
-  Seja f(x) uma função contínua num intervalo [a,b]. Se f(a)f(b) $<$ 0, então existe pelo menos um ponto
-  x = $\alpha$ entre a e b que é zero de f(x).
-\end{ambiente}
-
-E analisando o gráfico da figura \ref{fig:grafico} é possível perceber que a equação~\eqref{eq:inzero} intercepta o eixo X no intervalo $[0,1]$
-
-Ao substituirmos estes pontos na equação~\eqref{eq:inzero}, obtemos os seguintes resultados.
-
-\begin{eqnarray}\label{eq:results}
-  a = 0, b = 1 \nonumber\\
-  f(a) =   -0.2sin(0) + 0 - 0.5 \nonumber\\
-  f(a)= -0.5\nonumber\\
-  f(b) =   -0.2sin(1) + 1 - 0.5 \nonumber\\
-  f(b)= 0.3317058030384207 \nonumber\\
-  f(a) * f(b) = -0.16585290151921034
+A primeira coisa a se fazer é passar o sistema de equação~\eqref{eq:sistema} para o formato matricial, sendo assim obtemos a seguinte relação:
+\begin{eqnarray}\label{eq:matrizes}
+  R * I = E
 \end{eqnarray}
-
-Então, de acordo com o teorema \ref{teo:teorema}, como o resultado de $f(a) * f(b) < 0$ de fato há uma raíz entre o intervalo $[0,1]$.
-
-
+Onde $R$ é a matriz dos resistores, $I$ é o vetor das Correntes e $E$ o vetor das tensões.
+A partir da relação expressa na equação~\eqref{eq:matrizes} obtemos a seguinte matriz:
+\begin{eqnarray}\label{eq:matrizes2}
+\left[\begin{array}{rrrrrr}
+R_1 & R_2 & R_3 & R_4 & R_5 & R_6\\
+R_1 & R_2 & R_3 & R_4 & R_5 & R_6\\
+R_1 & R_2 & R_3 & R_4 & R_5 & R_6\\
+R_1 & R_2 & R_3 & R_4 & R_5 & R_6\\
+R_1 & R_2 & R_3 & R_4 & R_5 & R_6\\
+R_1 & R_2 & R_3 & R_4 & R_5 & R_6
+\end{array}\right] *
+\left[\begin{array}{r}
+I_1\\I_2\\I_3\\I_4\\I_5\\I_6
+\end{array}\right] =
+\left[\begin{array}{r}
+E_1\\E_2\\E_3\\E_4\\E_5\\E_6
+\end{array}\right]
+\end{eqnarray}
+Baseando-se nos valores iniciais informados na figura~\eqref{fig:ponte} para as resistências e a tensão ao fazermos as devidas
+substituições obtemos a seguinte expressão:
+\begin{eqnarray}\label{eq:matrizes3}
+\left[\begin{array}{rrrrrr}
+10 & 0 & 0 & 100 & 0 & 0\\
+10 & -100 & 0 & 0 & 100 & 0\\
+0 & 0 & 100 & -100 & 100 & 0\\
+-1 & -1 & 0 & 0 & 0 & 1\\
+1 & 0 & 0 & -1 & -1 & 0\\
+0 & -1 & 1 & 0 & -1 & 0
+\end{array}\right] *
+\left[\begin{array}{r}
+I_1\\I_2\\I_3\\I_4\\I_5\\I_6
+\end{array}\right] =
+\left[\begin{array}{r}
+20\\0\\0\\0\\0\\0
+\end{array}\right]
+\end{eqnarray}
+Pela qual é possível expressar qualquer uma das equações informadas inicialmente no sistema~\eqref{eq:sistema}. Ao pegarmos a
+matriz $R$ e o vetor $E$ teremos a matriz aumentada $MA$:
+\begin{eqnarray}\label{eq:matrizes3}
+\left[\begin{array}{rrrrrrrr}
+10 & 0 & 0 & 100 & 0 & 0 & \vdots & 20\\
+10 & -100 & 0 & 0 & 100 & 0 & \vdots & 0\\
+0 & 0 & 100 & -100 & 100 & 0 & \vdots & 0\\
+-1 & -1 & 0 & 0 & 0 & 1 & \vdots & 0\\
+1 & 0 & 0 & -1 & -1 & 0 & \vdots & 0\\
+0 & -1 & 1 & 0 & -1 & 0 & \vdots & 0
+\end{array}\right]
+\end{eqnarray}
 
 \newpage
 \section{Diagrama esquemático de execução}
 
-Nesta seção, encontra-se o fluxo de execução da solução da equação~\eqref{eq:original} utilizando a linguagem C. Que é apresentada na próxima sessão.
+Nesta seção, encontra-se o fluxo de execução da solução da equação~\eqref{eq:original} utilizando
+a linguagem C. Que é apresentada na próxima sessão.
 
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=10cm]{figuras/fluxograma.png}\\
-  \caption{Fluxo de execução da solução}\label{fig:fluxo}
-\end{figure}
+% \begin{figure}[!h]
+%   \centering
+%   \includegraphics[width=10cm]{figuras/fluxograma.png}\\
+%   \caption{Fluxo de execução da solução}\label{fig:fluxo}
+% \end{figure}
 
-A solução elaborada neste relatório funciona da seguinte maneira. Tanto a função, quanto a precisão desejada são inseridas diretamente no código fonte. Apenas o intervalo no qual se deseja verificar a existencia da raíz é solicitado ao usuário em tempo de execução. Caso o intervalo informado não possua uma raíz, de acordo com teorema \ref{teo:teorema}, uma mensagem é apresentada ao usuário e a execução encerra. Caso o intervalo seja válido a raíz correspondente é apresentada e então o programa se encerra.
+A solução elaborada neste relatório funciona da seguinte maneira. Tanto a função, quanto a precisão
+desejada são inseridas diretamente no código fonte. Apenas o intervalo no qual se deseja verificar
+a existencia da raíz é solicitado ao usuário em tempo de execução. Caso o intervalo informado não
+possua uma raíz, de acordo com teorema \ref{teo:teorema}, uma mensagem é apresentada ao usuário e a
+execução encerra. Caso o intervalo seja válido a raíz correspondente é apresentada e então o programa se encerra.
 
 \newpage
 \section{Código Fonte}
 
-\lstinputlisting[language=C]{../solution/m1.c}
+\lstinputlisting[language=C]{../solution/m2.c}
 
 \newpage
 \section{Resultados e discussões}
@@ -185,7 +221,9 @@ A partir desta saída, definimos a próxima equação:
   x = 0.61546816950
 \end{eqnarray}
 
-O resultado encontrado a partir da solução proposta é condizente. Pois ao fazermos a substituição do valor encontrado na equação~\eqref{eq:final} na fórmula~\eqref{eq:inzero} conseguimos obter um valor muito próximo a zero. Como pode ser visto abaixo:
+O resultado encontrado a partir da solução proposta é condizente. Pois ao fazermos a substituição do valor
+encontrado na equação~\eqref{eq:final} na fórmula~\eqref{eq:inzero} conseguimos obter um valor muito próximo a zero.
+Como pode ser visto abaixo:
 
 \begin{figure}[!h]
   \centering
@@ -197,7 +235,8 @@ Sendo assim, o objetivo proposto no início do relatório foi satisfatoriamente 
 
 \newpage
 \section{Ferramentas}
-Todas as ferramentas utilizadas neste relatório são ferramentas open source (software livre). Permitindo assim que qualquer um possa reproduzir e contestar as afirmações presentes neste documento.
+Todas as ferramentas utilizadas neste relatório são ferramentas open source (software livre).
+Permitindo assim que qualquer um possa reproduzir e contestar as afirmações presentes neste documento.
 
 \begin{enumerate}
   \item Arch Linux (\url{https://www.archlinux.org})
