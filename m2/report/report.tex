@@ -123,7 +123,7 @@ Sendo assim, para as seguintes malhas temos as seguintes equações:
 \end{eqnarray}
 
 O objetivo do trabalho é solucionar o sistema de equações lineares acima para determinar as correntes
-$I1, I2,...,I6$ através do método de Gauss-Jordan.
+$I1, I2,...,I6$ através do método de eliminação de Gauss-Jordan, com uma precisão de 10 casas decimais.
 
 \section{Metodologia}
 
@@ -183,20 +183,23 @@ matriz $R$ e o vetor $E$ teremos a matriz aumentada $MA$:
 \newpage
 \section{Diagrama esquemático de execução}
 
-Nesta seção, encontra-se o fluxo de execução da solução da equação~\eqref{eq:original} utilizando
+Nesta seção, encontra-se o fluxo de execução do sistema proposto na equação~\eqref{eq:sistema} utilizando
 a linguagem C. Que é apresentada na próxima sessão.
 
-% \begin{figure}[!h]
-%   \centering
-%   \includegraphics[width=10cm]{figuras/fluxograma.png}\\
-%   \caption{Fluxo de execução da solução}\label{fig:fluxo}
-% \end{figure}
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=10cm]{figuras/fluxograma.png}\\
+  \caption{Fluxo de execução da solução}\label{fig:fluxo}
+\end{figure}
 
-A solução elaborada neste relatório funciona da seguinte maneira. Tanto a função, quanto a precisão
-desejada são inseridas diretamente no código fonte. Apenas o intervalo no qual se deseja verificar
-a existencia da raíz é solicitado ao usuário em tempo de execução. Caso o intervalo informado não
-possua uma raíz, de acordo com teorema \ref{teo:teorema}, uma mensagem é apresentada ao usuário e a
-execução encerra. Caso o intervalo seja válido a raíz correspondente é apresentada e então o programa se encerra.
+A solução elaborada neste relatório funciona da seguinte maneira. É necessário inserir a quantiade de linhas
+do sistema de equações lineares, em formato de matriz aumentada, que se quer resolver. Após isso o programa
+solicitará a inserção dos elementos de cada uma das linhas da matriz. Após completar a matriz de entrada o
+sistema irá fazer a diagonalização de acordo com o método de eliminação de Gaus-Jordan. Onde caso os índices
+i e j sejam diferentes, ou seja não fazem parte da diagonal principal, será aplicado o algoritmo de eliminação.
+Após haver apenas os elementos da diagonal principal, o método de solução se torna direto e com isso é possível
+encontrar os valores da incógnitas que se busca. As limitações do programa são entradas de matrizes de no máximo
+10x10 e apenas para equações lineares.
 
 \newpage
 \section{Código Fonte}
@@ -207,12 +210,6 @@ execução encerra. Caso o intervalo seja válido a raíz correspondente é apre
 \section{Resultados e discussões}
 
 Nesta seção discutiremos os resultados obtido após a execução do programa.
-
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=15cm]{figuras/x.png}\\
-  \caption{Resultado da execução da solução}\label{fig:valx}
-\end{figure}
 
 A partir desta saída, definimos a próxima equação:
 
