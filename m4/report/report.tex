@@ -180,15 +180,15 @@ Aplicando a equação~\eqref{eq:lagrange} mais uma vez:
 \end{eqnarray}
 
 Onde: \\
-$L_0(x) = \frac{(x - x_1)\cdot(x - x_2)\cdot(x - x_3)}{(x_0 - x_1)\cdot(x_0 - x_2)\cdot(x_0 - x_3)} = \frac{(x - 20)\cdot(x - 25)\cdot(x - 30)}{(15 - 20)\cdot(15 - 25)\cdot(15 - 30)} = \frac{x^3 - 75x^2 + 1400x - 1500}{-750}$\\
+$L_0(x) = \frac{(x - x_1)\cdot(x - x_2)\cdot(x - x_3)}{(x_0 - x_1)\cdot(x_0 - x_2)\cdot(x_0 - x_3)} = \frac{(x - 20)\cdot(x - 25)\cdot(x - 30)}{(15 - 20)\cdot(15 - 25)\cdot(15 - 30)} = \frac{x^3 - 75x^2 + 1850x - 15000}{-750}$\\
 $L_1(x) = \frac{(x - x_0)\cdot(x - x_2)\cdot(x - x_3)}{(x_1 - x_0)\cdot(x_1 - x_2)\cdot(x_1 - x_3)} = \frac{(x - 15)\cdot(x - 25)\cdot(x - 30)}{(20 - 15)\cdot(20 - 25)\cdot(20 - 30)} = \frac{x^3 - 70x^2 + 1575x - 11250}{250}$\\
-$L_2(x) = \frac{(x - x_0)\cdot(x - x_1)\cdot(x - x_3)}{(x_2 - x_0)\cdot(x_2 - x_1)\cdot(x_2 - x_3)} = \frac{(x - 15)\cdot(x - 20)\cdot(x - 30)}{(25 - 15)\cdot(25 - 20)\cdot(25 - 30)} = \frac{x^3 - 65x^2 + 1350x - 900}{-250}$\\
+$L_2(x) = \frac{(x - x_0)\cdot(x - x_1)\cdot(x - x_3)}{(x_2 - x_0)\cdot(x_2 - x_1)\cdot(x_2 - x_3)} = \frac{(x - 15)\cdot(x - 20)\cdot(x - 30)}{(25 - 15)\cdot(25 - 20)\cdot(25 - 30)} = \frac{x^3 - 65x^2 + 1350x - 9000}{-250}$\\
 $L_3(x) = \frac{(x - x_0)\cdot(x - x_1)\cdot(x - x_2)}{(x_3 - x_0)\cdot(x_3 - x_1)\cdot(x_3 - x_2)} = \frac{(x - 15)\cdot(x - 20)\cdot(x - 25)}{(30 - 15)\cdot(30 - 20)\cdot(30 - 25)} = \frac{x^3 - 60x^2 + 1175x - 7500}{750}$
 
 Obtendo assim o segundo polinômio interpolador:
 \begin{eqnarray}\label{eq:pi2}
-  P(x) = 0.9991 \cdot \left(\frac{x^3 - 75x^2 + 1400x - 1500}{-750}\right) + 0.9982 \cdot \left(\frac{x^3 - 70x^2 + 1575x - 11250}{250}\right) + \nonumber \\
-  + 0.9971 \cdot \left(\frac{x^3 - 65x^2 + 1350x - 900}{-250}\right) + 0.9957 \cdot \left(\frac{x^3 - 60x^2 + 1175x - 7500}{750}\right)
+  P(x) = 0.9991 \cdot \left(\frac{x^3 - 75x^2 + 1850x - 15000}{-750}\right) + 0.9982 \cdot \left(\frac{x^3 - 70x^2 + 1575x - 11250}{250}\right) + \nonumber \\
+  + 0.9971 \cdot \left(\frac{x^3 - 65x^2 + 1350x - 9000}{-250}\right) + 0.9957 \cdot \left(\frac{x^3 - 60x^2 + 1175x - 7500}{750}\right)
 \end{eqnarray}
 
 \newpage
@@ -224,7 +224,7 @@ Nesta seção discutiremos os resultados obtidos após a execução.
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=15cm]{figuras/printx.png}\\
+  \includegraphics[width=15cm]{figuras/p13.png}\\
   \caption{Resultado da execução do programa}\label{fig:printx}
 \end{figure}
 Após a execução do programa obtemos os valores dos coeficientes que resulta no seguinte polinômio:
@@ -258,7 +258,7 @@ O resultado encontrado a partir da solução proposta é condizente. Pois ao faz
 E também graficamente, como é mostrado abaixo:
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=12cm]{figuras/coef.png}\\
+  \includegraphics[width=12cm]{figuras/graph.png}\\
 \end{figure}
 
 Sendo assim, o objetivo proposto no início do relatório foi satisfatoriamente alcançado.
