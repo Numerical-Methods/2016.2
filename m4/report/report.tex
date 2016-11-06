@@ -119,19 +119,23 @@ O problema a ser solucionado é o que trata da seguinte tabela de resultados par
     \hline
   \end{tabular}
   \caption{Valores tabelados}
+  \label{tab:tabeladados}
 \end{table}
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=12cm]{figuras/graph.png}\\
+  \caption{Plotagem dos dados da tabela~\eqref{tab:tabeladados}}\label{fig:graph}
+\end{figure}
 
 O objetivos deste relatório será, através de interpolação polinomial de 2\textsuperscript{\b{o}} e 3\textsuperscript{\b{o}} graus, obter os valores de $\rho(13)$ e $\rho(27)$. E por fim, apresentar um gráfico com os pontos e os polinômios interpoladores obtidos.
 
 \section{Metodologia}
-
 Baseando-se no método da Interpolação de Lagrange:
 \begin{eqnarray}\label{eq:lagrange}
   P(x) = \sum\limits_{i=0}^{n}y_i \frac{L_i(x)}{L_i(x_i)}
 \end{eqnarray}
-Onde: $L_i(x) = (x - x_0) ... (x - x_i-1)(x - x_i+1) ... (x - x_n)$.
-
-Para $n$ pontos, obtemos um polinômio de grau $n-1$. Baseado nisso, a fim de encontrar o valor de $\rho(13)$, como um polinômio de 2\textsuperscript{\b{o}} utilizaremos os 3 seguintes pontos:
+Onde: $L_i(x) = (x - x_0) ... (x - x_i-1)(x - x_i+1) ... (x - x_n)$\\
+No qual, para $n$ pontos, obtemos um polinômio de grau $n-1$. A fim de encontrar o valor de $\rho(13)$, como um polinômio de 2\textsuperscript{\b{o}} utilizaremos os 3 seguintes pontos:
 
 \begin{table}[h]
   \centering
@@ -143,6 +147,7 @@ Para $n$ pontos, obtemos um polinômio de grau $n-1$. Baseado nisso, a fim de en
     \hline
   \end{tabular}
   \caption{Valores para $\rho(13)$}
+  \label{tab:val13}
 \end{table}
 
 Aonde, ao aplicarmos a equação~\eqref{eq:lagrange} obtemos o seguinte resultado:
@@ -172,6 +177,7 @@ E para o $\rho(27)$ como um polinômio de 3\textsuperscript{\b{o}} utilizaremos 
     \hline
   \end{tabular}
   \caption{Valores para $\rho(27)$}
+  \label{tab:val27}
 \end{table}
 
 Aplicando a equação~\eqref{eq:lagrange} mais uma vez:
@@ -194,23 +200,21 @@ Obtendo assim o segundo polinômio interpolador:
 \newpage
 \section{Diagrama esquemático de execução}
 
-Nesta seção, encontra-se o fluxo de execução do sistema proposto na equação~\eqref{eq:sistema} utilizando
-a linguagem C. Que é apresentada na próxima sessão.
-
+Nesta seção, encontra-se o fluxo de execução utilizando a linguagem C. Que é apresentada na próxima sessão.
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=10cm]{figuras/fluxograma.png}\\
+  \includegraphics[width=8cm]{figuras/fluxograma.png}\\
   \caption{Fluxo de execução da solução}\label{fig:fluxo}
 \end{figure}
-
-A solução elaborada neste relatório funciona da seguinte maneira. É necessário inserir a quantiade de linhas
-do sistema de equações lineares, em formato de matriz aumentada, que se quer resolver. Após isso o programa
-solicitará a inserção dos elementos de cada uma das linhas da matriz. Após completar a matriz de entrada o
-sistema irá fazer a diagonalização de acordo com o método de eliminação de Gaus-Jordan. Onde caso os índices
-i e j sejam diferentes, ou seja não fazem parte da diagonal principal, será aplicado o algoritmo de eliminação.
-Após haver apenas os elementos da diagonal principal, o método de solução se torna direto e com isso é possível
-encontrar os valores da incógnitas que se busca. As limitações do programa são entradas de matrizes de no máximo
-10x10 e apenas para equações lineares.
+A solução elaborada neste relatório funciona da seguinte maneira. É necessário inserir a quantiade de pontos
+conhecidos. A quantidade máxima permitida é de 10 elementos, ou seja, funções de grau máximo 9.
+Após isso o programa solicitará a inserção do valor de cada ponto e em seguida o valor da função. Por fim,
+também é solicitado o valor de $x$ que deseja aproximar.
+Então, o programa inicia o vetor L com zero em todas as suas posições e em seguida entra em um loop calculando
+o somatório do método de legrange, baseado no princípio de que os elementos $i~e~j$ não podem ser iguais, para que
+haja o cancelamento de todos os elementos. O resultado da divisão é então alocado na respectiva célula do vetor L.
+Por fim, há um loop para somar todos os valores de lagrange encontrados na variável $p$, que é então exibida ao
+usuário, estando preenchida com o valor em função do ponto $x$ que o usuário inseriu.
 
 \newpage
 \section{Código Fonte}
@@ -220,46 +224,37 @@ encontrar os valores da incógnitas que se busca. As limitações do programa s�
 \newpage
 \section{Resultados e discussões}
 
-Nesta seção discutiremos os resultados obtidos após a execução.
+Nesta seção discutiremos os resultados obtidos após a execução do programa apresentado na seção anterior.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=15cm]{figuras/p13.png}\\
-  \caption{Resultado da execução do programa}\label{fig:printx}
+  \caption{Resultado da execução do programa para $\rho(13)$}\label{fig:printro13}
 \end{figure}
-Após a execução do programa obtemos os valores dos coeficientes que resulta no seguinte polinômio:
-\begin{eqnarray}\label{eq:polinomio}
-  C(x) = 0,6523 - 0,2438x + 0,5682x^2
-\end{eqnarray}
-O resultado encontrado a partir da solução proposta é condizente. Pois ao fazermos a comparação dos valores iniciais com os obtidos através da equação~\eqref{eq:polinomio} encontramos valores bem próximos uns dos outros, como pode ser visto na tabela abaixo:
-
-\begin{table}[h]
-  \centering
-  \vspace{0.5cm}
-  \begin{tabular}{|r|r|r|r|r|r|r|r|r|r|r|}
-    \hline
-    \multicolumn{11}{|c|}{Valores iniciais do experimento} \\
-    \hline
-      $\frac{A}{A_1}$ & 0.10 & 0.20 & 0.30 & 0.40 & 0.50 & 0.60 & 0.70 & 0.80 & 0.90 & 1.00\\
-    \hline
-      $C$ & 0.62 & 0.63 & 0.64 & 0.66 & 0.68 & 0.71 & 0.76 & 0.81 & 0.89 & 1.00\\
-    \hline
-    \multicolumn{11}{|c|}{Valores obtidos após o método} \\
-    \hline
-      $\frac{A}{A_1}$ & 0.10 & 0.20 & 0.30 & 0.40 & 0.50 & 0.60 & 0.70 & 0.80 & 0.90 & 1.00\\
-    \hline
-      $C$ & 0.63 & 0.63 & 0.63 & 0.65 & 0.67 & 0.71 & 0.76 & 0.82 & 0.89 & 0.98\\
-    \hline
-  \end{tabular}
-  \caption{Valores experimentais e de regressão}
-\end{table}
-
-\newpage
-E também graficamente, como é mostrado abaixo:
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=12cm]{figuras/graph.png}\\
+  \includegraphics[width=15cm]{figuras/p27.png}\\
+  \caption{Resultado da execução do programa para $\rho(27)$}\label{fig:printro27}
 \end{figure}
+Após a execução do programa foram obtidos os seguintes valores:
+\begin{center}
+  $\rho(13) = 0.9994$ e $\rho(27) = 0.9966$
+\end{center}
+
+O resultado encontrado a partir da solução proposta é condizente. Pois ao fazermos a plotagem dos dados da tabela~\eqref{tab:tabeladados} juntamente com os resultados obtidos através dos polinômios interpoladores apresentados nas equações~\eqref{eq:pi1} e \eqref{eq:pi2} chegamos ao seguinte resultado:
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=15cm]{figuras/graph2.png}\\
+  \caption{Plotagem dos resultados}
+  \label{fig:graph2}
+\end{figure}
+
+A figura~\eqref{fig:graph2} apresenta os dados da tabela~\eqref{tab:tabeladados} como pontos na cor verde juntamente com os dois pontos que se procurava os resultado, $13$ e $27$, na cor vermelha. A linha verde representa a função interpoladora de 2\textsuperscript{\b{o}} e a linha de cor roxa a função interpoladora de 3\textsuperscript{\b{o}}.
+
+Assim como foi estabelecido na seção de Metodologia, é possível notar que a função de 2\textsuperscript{\b{o}} intercepta justamente os pontos escolhido na tabela~\eqref{tab:val13}, $[5, 10~e~15]$, e o mesmo ocorre com a função de 3\textsuperscript{\b{o}} com relação aos pontos da tabela~\eqref{tab:val27}, $[15, 20, 25~e~30]$.
+
+E ambos os pontos, $13~e~27$, que estão dentro dos respectivos intervalos também são interceptados pelas funções interpoladoras.
 
 Sendo assim, o objetivo proposto no início do relatório foi satisfatoriamente alcançado.
 
