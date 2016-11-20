@@ -102,7 +102,7 @@
 
 O objetivo deste relatório é exercitar os conceitos aprendidos em aula, com relação ao tópico: \thetitle.
 
-Em determinadas situações, integrais são difíceis, ou mesmo impossíveis de se resolver analiticamente. Para contornar esse obstáculo é possível, através da substituição da função $f(x)$ por um polinômio que a aproxime razoavelmente num dado intervalo $[a, b], encontrar o valor da integral$.
+Em determinadas situações, integrais são difíceis, ou mesmo impossíveis de se resolver analiticamente. Para contornar esse obstáculo é possível, através da substituição da função $f(x)$ por um polinômio que a aproxime razoavelmente num dado intervalo $[a, b]$, encontrar o valor da integral.
 
 O problema a ser solucionado é o que trata da função seno integral, como é mostrado a seguir:
 
@@ -142,23 +142,14 @@ Como o problema especifica uma quantidade mínimia de pontos a serem apresentado
 
 \newpage
 \section{Diagrama esquemático de execução}
-
 Nesta seção, encontra-se o fluxo de execução utilizando a linguagem C. Que é apresentada na próxima sessão.
 \begin{figure}[!h]
   \centering
   \includegraphics[width=10cm]{figuras/fluxograma.png}\\
   \caption{Fluxo de execução da solução}\label{fig:fluxo}
 \end{figure}
-
-A solução elaborada neste relatório funciona da seguinte maneira. É necessário inserir a quantiade de pontos
-conhecidos. A quantidade máxima permitida é de 10 elementos, ou seja, funções de grau máximo 9.
-Após isso o programa solicitará a inserção do valor de cada ponto e em seguida o valor da função. Por fim,
-também é solicitado o valor de $x$ que deseja aproximar.
-Então, o programa inicia o vetor L com zero em todas as suas posições e em seguida entra em um loop calculando
-o somatório do método de legrange, baseado no princípio de que os elementos $i~e~j$ não podem ser iguais, para que
-haja o cancelamento de todos os elementos. O resultado da divisão é então alocado na respectiva célula do vetor L.
-Por fim, há um loop para somar todos os valores de lagrange encontrados na variável $p$, que é então exibida ao
-usuário, estando preenchida com o valor em função do ponto $x$ que o usuário inseriu.
+A solução elaborada neste relatório funciona da seguinte maneira. É necessário inserir o limite superior através da linha de comando. O programa trabalha com uma quantidade fixa de $100$ elementos para fazer a aproximação do resultado.
+Primeiramente o programa calcula o valor do $h$ de acordo com a equação~\eqref{eq:h}. Após isso o programa entra em um loop no qual ele calcula os intervalos, $h$, e atribui para cada um deles o valor resultante da função $Sin(x)/x$. Juntamente com isto, o programa já gera um arquivo, que será utilizado mais a frente para gerar o gráfico da função, com os pontos da equação e os respectivos valores. Em seguida são somados todos os elementos com exceção do primeiro e último. Após isto calcula-se o valor de $I$ de acordo com a Regra do Trapézio Composto. Por fim é apresentado o resultado em tela.
 
 \newpage
 \section{Código Fonte}\label{sec:codigofonte}
